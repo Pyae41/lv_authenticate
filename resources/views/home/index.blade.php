@@ -2,20 +2,20 @@
 
 @section('content')
     @auth
-        <h3 class="mt-3">Product</h3>
+        <h3 class="mt-3">{{ __('langs.products') }}</h3>
 
         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'manager')
-            <a href="{{ route('product.create') }}" class="btn btn-success mt-3">Create New Product</a>
+            <a href="{{ route('product.create') }}" class="btn btn-success mt-3">{{ __('langs.create_product') }}</a>
         @endif
 
         <table class="table table-striped mt-3 text-center">
             <thead class="bg-black text-white">
-                <th>Id</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th>{{ __('langs.t_no') }}</th>
+                <th>{{ __('langs.t_product_name') }}</th>
+                <th>{{ __('langs.t_product_price') }}</th>
+                <th>{{ __('langs.t_product_quantity') }}</th>
                 @if (auth()->user()->role == 'admin' || auth()->user()->role == 'manager')
-                    <th>Action</th>
+                    <th>{{ __('langs.t_action') }}</th>
                 @endif
             </thead>
             <tbody>
@@ -28,11 +28,11 @@
                         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'manager')
                             @can('isAdmin')
                                 <td class="d-flex justify-content-center">
-                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-info text-white me-2">Edit</a>
+                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-info text-white me-2">{{ __('langs.edit_button') }}</a>
                                     <form action="{{ route('product.destroy', $product->id) }}" method="post" class="w-25">
                                         @method('delete')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{{ __('langs.delete_button') }}</button>
                                     </form>
                                 </td>
                             @elsecan('isManager')
@@ -48,8 +48,8 @@
     @endauth
     @guest
         <div class="bg-light p-5 rounded text-center">
-            <h1 class="text-center">Home Page</h1>
-            <p>You are in home page.</p>
+            <h1 class="text-center">{{ __('langs.home-page') }}</h1>
+            <p>{{ __('langs.not_logged_in') }}</p>
         </div>
     @endguest
 @endsection

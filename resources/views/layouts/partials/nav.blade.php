@@ -8,11 +8,11 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">{{ __('langs.home') }}</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">{{ __('langs.features') }}</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">{{ __('langs.pricing') }}</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">{{ __('langs.about') }}</a></li>
             </ul>
 
             @auth
@@ -20,15 +20,28 @@
                 <div class="text-end">
                     <form action="{{ route('logout') }}" method="post" class="me-2">
                         @csrf
-                        <button class="btn btn-outline-light me-2">Logout</button>
+                        <button class="btn btn-outline-light me-2">{{ __('langs.logout') }}</button>
                     </form>
+                </div>
+                <div>
+                    <select name="" id="lan-option" class="form-control text-white">
+                        <option value="en" @if(Session::get('locale') == 'en')selected @endif>EN</option>
+                        <option value="mm" @if(Session::get('locale') == 'mm')selected @endif>MM</option>
+                    </select>
                 </div>
             @endauth
 
             @guest
                 <div class="text-end">
-                    <a href="{{ route('login.show') }}" class="btn btn-outline-light me-2">Login</a>
-                    <a href="{{ route('register.show') }}" class="btn btn-outline-light me-2">Sign-up</a>
+                    <a href="{{ route('login.show') }}" class="btn btn-outline-light me-2">{{ __('langs.login') }}</a>
+                    <a href="{{ route('register.show') }}" class="btn btn-outline-light me-2">{{ __('langs.sign-up') }}</a>
+                </div>
+                <div>
+                    <select name="" id="lan-option" class="form-control text-white">
+                        {{ Session::get('locale')}}
+                        <option value="en" @if(Session::get('locale') == 'en')selected @endif>EN</option>
+                        <option value="mm" @if(Session::get('locale') == 'mm')selected @endif>MM</option>
+                    </select>
                 </div>
             @endguest
 
