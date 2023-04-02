@@ -18,6 +18,15 @@
     </div>
 
     <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#lan-option').change(function(){
+                // alert('hello')
+                window.location.href = `/locale/${$(this).val()}`;
+            })
+        });
+    </script>
 </body>
 
 </html>
